@@ -7,13 +7,11 @@
 #include <avr/wdt.h>
 
 
-
+#define NODE_ID 7
 
 #define RADIO_RESET_DELAY_TIME 20 //Задержка между сообщениями
 #define MESSAGE_ACK_RETRY_COUNT 5  //количество попыток отсылки сообщения с запросом подтверждения
 
-
-#define NODE_ID 7
 
 #define CHILD_ID_TEMPERATURE 1  //DHT22
 #define CHILD_ID_DOOR 2
@@ -73,7 +71,7 @@ void setup() {
     gw.begin(incomingMessage, NODE_ID, false);
 
   // Send the sketch version information to the gateway and Controller
-  gw.sendSketchInfo("Country home entrance sensor", "1.0");
+  gw.sendSketchInfo("Country home entrance sensor 2", "1.1");
         gw.wait(RADIO_RESET_DELAY_TIME);   
 
 
@@ -136,7 +134,7 @@ void setup() {
   boolean motion = digitalRead(MOTION_SENSOR_DIGITAL_PIN) == HIGH; 
   gw.send(MotionMsg.set(motion ? "1" : "0" ));  // Send motion value to gw
         gw.wait(RADIO_RESET_DELAY_TIME);   
-          
+
   
     //Enable watchdog timer
     wdt_enable(WDTO_8S);
