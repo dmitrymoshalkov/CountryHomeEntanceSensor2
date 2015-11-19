@@ -243,6 +243,8 @@ void incomingMessage(const MyMessage &message) {
             boolMotionSensorDisabled = false;
          }
 
+         gw.send(MotionStateMsg.set(boolMotionSensorDisabled ? "1" : "0" )); 
+
      }
      
     if ( message.sensor == RECHECK_SENSOR_VALUES ) {
